@@ -15,6 +15,15 @@
         "onCommand:extension.ngInit",
         "onCommand:extension.ngVersion"
     ],
+    "bugs": {
+        "url": "https://github.com/web-dave/vsc-angular-cli/issues"
+    },
+    "homepage": "https://github.com/web-dave/vsc-angular-cli/blob/master/README.md",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/web-dave/vsc-angular-cli.git"
+    },
+
     "main": "./out/src/extension",
     "contributes": {
         "commands": [{
