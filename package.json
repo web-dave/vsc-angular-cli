@@ -1,7 +1,7 @@
 {
     "name": "vsc-angular-cli",
     "displayName": "vsc-angular-cli",
-    "description": "angular-cli commands",
+    "description": "run angular-cli commands from command pannel",
     "version": "0.0.1",
     "publisher": "web-dave",
     "engines": {
@@ -13,6 +13,8 @@
     "activationEvents": [
         "onCommand:extension.ngNew",
         "onCommand:extension.ngInit",
+        "onCommand:extension.ngDoc",
+        "onCommand:extension.ngLint",
         "onCommand:extension.ngVersion"
     ],
     "bugs": {
@@ -32,6 +34,12 @@
         }, {
             "command": "extension.ngInit",
             "title": "ng init"
+        }, {
+            "command": "extension.ngDoc",
+            "title": "ng doc"
+        }, {
+            "command": "extension.ngLint",
+            "title": "ng lint"
         }, {
             "command": "extension.ngVersion",
             "title": "ng version"
