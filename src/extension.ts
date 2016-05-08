@@ -35,6 +35,13 @@ export function activate(context: vscode.ExtensionContext) {
         });
     });
     
+    let ngserve = vscode.commands.registerCommand('extension.ngServe', () => {
+        child = exec('ng serve');
+        child.stdout.on('data', (data) => {
+            console.log(data);
+        });
+    });
+    
     let ngdoc = vscode.commands.registerCommand('extension.ngDoc', () => {
         vscode.window.showInputBox({ placeHolder: 'name of your project' }).then(
             (data) => {
@@ -113,6 +120,7 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(ngnew);
     context.subscriptions.push(nginit);
     context.subscriptions.push(ngversion);
+    context.subscriptions.push(ngserve);
     context.subscriptions.push(ngdoc);
     context.subscriptions.push(nglint);
     

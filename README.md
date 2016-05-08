@@ -11,9 +11,10 @@ In Visual Studio Code, run  ext install vsc-angular-cli  - or, simply hit  CMD/C
 * ng init
 * ng version
 * ng doc
-* ng lint
+* ng serve
 
 ### comming (very) soon.
+* ng lint
 * ng completion
 * ng e2e
 * ng format

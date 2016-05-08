@@ -1,62 +1,60 @@
 {
-  "name": "vsc-angular-cli",
-  "displayName": "vsc-angular-cli",
-  "description": "run angular-cli commands from command pannel",
-  "version": "0.0.2",
-  "publisher": "web-dave",
-  "engines": {
-    "vscode": "^1.0.0"
-  },
-  "categories": [
-    "Other"
-  ],
-  "activationEvents": [
-    "onCommand:extension.ngNew",
-    "onCommand:extension.ngInit",
-    "onCommand:extension.ngDoc",
-    "onCommand:extension.ngLint",
-    "onCommand:extension.ngVersion"
-  ],
-  "bugs": {
-    "url": "https://github.com/web-dave/vsc-angular-cli/issues"
-  },
-  "homepage": "https://github.com/web-dave/vsc-angular-cli/blob/master/README.md",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/web-dave/vsc-angular-cli.git"
-  },
-  "main": "./out/src/extension",
-  "contributes": {
-    "commands": [
-      {
-        "command": "extension.ngNew",
-        "title": "ng new"
-      },
-      {
-        "command": "extension.ngInit",
-        "title": "ng init"
-      },
-      {
-        "command": "extension.ngDoc",
-        "title": "ng doc"
-      },
-      {
-        "command": "extension.ngLint",
-        "title": "ng lint"
-      },
-      {
-        "command": "extension.ngVersion",
-        "title": "ng version"
-      }
-    ]
-  },
-  "scripts": {
-    "vscode:prepublish": "node ./node_modules/vscode/bin/compile",
-    "compile": "node ./node_modules/vscode/bin/compile -watch -p ./",
-    "postinstall": "node ./node_modules/vscode/bin/install"
-  },
-  "devDependencies": {
-    "typescript": "^1.8.5",
-    "vscode": "^0.11.0"
-  }
+    "name": "vsc-angular-cli",
+    "displayName": "vsc-angular-cli",
+    "description": "run angular-cli commands from command pannel",
+    "version": "0.0.2",
+    "publisher": "web-dave",
+    "engines": {
+        "vscode": "^1.0.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:extension.ngNew",
+        "onCommand:extension.ngInit",
+        "onCommand:extension.ngDoc",
+        "onCommand:extension.ngLint",
+        "onCommand:extension.ngServe",
+        "onCommand:extension.ngVersion"
+    ],
+    "bugs": {
+        "url": "https://github.com/web-dave/vsc-angular-cli/issues"
+    },
+    "homepage": "https://github.com/web-dave/vsc-angular-cli/blob/master/README.md",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/web-dave/vsc-angular-cli.git"
+    },
+    "main": "./out/src/extension",
+    "contributes": {
+        "commands": [{
+            "command": "extension.ngNew",
+            "title": "ng new"
+        }, {
+            "command": "extension.ngInit",
+            "title": "ng init"
+        }, {
+            "command": "extension.ngDoc",
+            "title": "ng doc"
+        }, {
+            "command": "extension.ngLint",
+            "title": "ng lint"
+        }, {
+            "command": "extension.ngServe",
+            "title": "ng serve"
+        }, {
+            "command": "extension.ngVersion",
+            "title": "ng version"
+        }]
+    },
+    "scripts": {
+        "vscode:prepublish": "node ./node_modules/vscode/bin/compile",
+        "compile": "node ./node_modules/vscode/bin/compile -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install"
+    },
+    "devDependencies": {
+        "typescript": "^1.8.5",
+        "vscode": "^0.11.0"
+    }
 }
