@@ -8,12 +8,12 @@ let outputChannel: vscode.OutputChannel;
 
 export function activate(context: vscode.ExtensionContext) {
 
-    //     registerCommands(context);
-    //     outputChannel = vscode.window.createOutputChannel('ng');
-    //     context.subscriptions.push(outputChannel);
-    // }
+    registerCommands(context);
+    outputChannel = vscode.window.createOutputChannel('ng');
+    context.subscriptions.push(outputChannel);
+}
 
-    // function registerCommands(context: vscode.ExtensionContext) {
+function registerCommands(context: vscode.ExtensionContext) {
 
     let ngnew = vscode.commands.registerCommand('extension.ngNew', () => {
         let project = vscode.window.showInputBox({ placeHolder: 'name of your project' }).then(
@@ -71,14 +71,13 @@ export function activate(context: vscode.ExtensionContext) {
         let items = ['component', 'directive', 'route', 'pipe', 'service'];
         let options = { matchOnDescription: false, placeHolder: "select Type" };
         vscode.window.showQuickPick(items, options).then((data) => {
-            // vscode.window.showInformationMessage(data);
             param.push(data);
             vscode.window.showInputBox({ placeHolder: 'name of the ' + data }).then(
-            (name) => {
-                param.push(name);
-                runNgCommand(param, false);
-            }
-        )
+                (name) => {
+                    param.push(name);
+                    runNgCommand(param, false);
+                }
+            )
         })
     });
 
@@ -124,10 +123,6 @@ export function activate(context: vscode.ExtensionContext) {
     //  context.subscriptions.push(ngget);
     //  context.subscriptions.push(ngset);
     //  context.subscriptions.push(ngdeploy);
-
-
-    outputChannel = vscode.window.createOutputChannel('ng');
-    context.subscriptions.push(outputChannel);
 
 }
 
