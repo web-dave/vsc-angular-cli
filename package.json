@@ -2,7 +2,7 @@
   "name": "vsc-angular-cli",
   "displayName": "vsc-angular-cli",
   "description": "run angular-cli commands from command pannel",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "publisher": "web-dave",
   "engines": {
     "vscode": "^1.0.0"
