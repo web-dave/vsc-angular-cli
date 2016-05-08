@@ -1,18 +1,24 @@
 'use strict';
 
 import * as vscode from 'vscode';
-import {exec} from 'child_process';
+import * as cp from 'child_process';
+import { runInTerminal } from 'run-in-terminal';
+
+let outputChannel: vscode.OutputChannel;
 
 export function activate(context: vscode.ExtensionContext) {
+    registerCommands(context);
+    outputChannel = vscode.window.createOutputChannel('ng');
+    context.subscriptions.push(outputChannel);
+}
+
+function registerCommands(context: vscode.ExtensionContext) {
     let child;
 
     let ngnew = vscode.commands.registerCommand('extension.ngNew', () => {
         let project = vscode.window.showInputBox({ placeHolder: 'name of your project' }).then(
             (data) => {
-                child = exec('ng new ' + data);
-                child.stdout.on('data', (data) => {
-                    console.log(data);
-                });
+                runNgCommand(['new', data], true);
             }
         )
     });
@@ -20,93 +26,69 @@ export function activate(context: vscode.ExtensionContext) {
     let nginit = vscode.commands.registerCommand('extension.ngInit', () => {
         let project = vscode.window.showInputBox({ placeHolder: 'name of your project' }).then(
             (data) => {
-                child = exec('ng init ' + data);
-                child.stdout.on('data', (data) => {
-                    console.log(data);
-                });
+                runNgCommand(['init', data], true);
             }
         )
     });
 
     let ngversion = vscode.commands.registerCommand('extension.ngVersion', () => {
-        child = exec('ng version');
+        child = cp.exec('ng version');
         child.stdout.on('data', (data) => {
             console.log(data);
         });
     });
 
     let ngserve = vscode.commands.registerCommand('extension.ngServe', () => {
-        child = exec('ng serve');
-        child.stdout.on('data', (data) => {
-            console.log(data);
-        });
-        child.stderr.on('data', function (data) {
-            console.error(data);
-        });
+        runNgCommand(['serve'], true);
     });
 
     let ngdoc = vscode.commands.registerCommand('extension.ngDoc', () => {
-        vscode.window.showInputBox({ placeHolder: 'name of your project' }).then(
+        vscode.window.showInputBox({ placeHolder: 'search for' }).then(
             (data) => {
-                child = exec('ng doc ' + data);
-                child.stdout.on('data', (data) => {
-                    console.log(data);
-                });
+                runNgCommand(['doc', data], false);
             }
         )
     });
 
     let nglint = vscode.commands.registerCommand('extension.ngLint', () => {
-        child = exec('ng lint');
-        child.stdout.on('data', (data) => {
-            console.log(data);
-        });
+        runNgCommand(['lint'], true);
     });
 
     let ngcompletion = vscode.commands.registerCommand('extension.ngCompletion', () => {
-        child = exec('ng completion');
-        child.stdout.on('data', (data) => {
-            vscode.window.showInformationMessage(data);
-        });
+        runNgCommand(['completion'], false);
     });
 
     let nge2e = vscode.commands.registerCommand('extension.ngE2e', () => {
-        child = exec('ng e2e');
-        child.stdout.on('data', (data) => {
-            vscode.window.showInformationMessage(data);
-        });
+        runNgCommand(['e2e'], true);
     });
 
     let ngformat = vscode.commands.registerCommand('extension.ngFormat', () => {
-        child = exec('ng format');
-        child.stdout.on('data', (data) => {
-            vscode.window.showInformationMessage(data);
-        });
+        runNgCommand(['format'], true);
     });
 
     // let nggenerate = vscode.commands.registerCommand('extension.ngGenerate', () => {
-    //     child = exec('ng generate');
+    //     child = cp.exec('ng generate');
     //     child.stdout.on('data', (data) => {
     //         vscode.window.showInformationMessage(data);
     //     });
     // });
 
     // let ngget = vscode.commands.registerCommand('extension.ngGet', () => {
-    //     child = exec('ng get');
+    //     child = cp.exec('ng get');
     //     child.stdout.on('data', (data) => {
     //         vscode.window.showInformationMessage(data);
     //     });
     // });
 
     // let ngset = vscode.commands.registerCommand('extension.ngSet', () => {
-    //     child = exec('ng set');
+    //     child = cp.exec('ng set');
     //     child.stdout.on('data', (data) => {
     //         vscode.window.showInformationMessage(data);
     //     });
     // });
 
     // let ngdeploy = vscode.commands.registerCommand('extension.ngDeploy', () => {
-    //     child = exec('ng github-pages:deploy');
+    //     child = cp.exec('ng github-pages:deploy');
     //     child.stdout.on('data', (data) => {
     //         vscode.window.showInformationMessage(data);
     //     });
@@ -114,7 +96,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 
     // let ngtest = vscode.commands.registerCommand('extension.ngTest', () => {
-    //     child = exec('ng test');
+    //     child = cp.exec('ng test');
     //     child.stdout.on('data', (data) => {
     //         vscode.window.showInformationMessage(data);
     //     });
@@ -126,15 +108,46 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(ngserve);
     context.subscriptions.push(ngdoc);
     context.subscriptions.push(nglint);
+    context.subscriptions.push(ngformat);
+    context.subscriptions.push(nge2e);
+    context.subscriptions.push(ngcompletion);
 
-    // context.subscriptions.push(ngcompletion);
-    // context.subscriptions.push(nge2e);
-    // context.subscriptions.push(ngformat);
     //     context.subscriptions.push(nggenerate);
     //     context.subscriptions.push(ngget);
     //     context.subscriptions.push(ngset);
     //     context.subscriptions.push(ngdeploy);
     //     context.subscriptions.push(ngtest);
+
+
+    function runCommandInOutputWindow(args: string[], cwd: string) {
+        let cmd = 'ng ' + args.join(' ');
+        let p = cp.exec(cmd, { cwd: cwd, env: process.env });
+        p.stderr.on('data', (data: string) => {
+            outputChannel.append(data);
+        });
+        p.stdout.on('data', (data: string) => {
+            outputChannel.append(data);
+        });
+        showOutput();
+    }
+
+    function showOutput(): void {
+        outputChannel.show(vscode.ViewColumn.Three);
+    }
+
+    function runNgCommand(args: string[], useTerminal?: boolean): void {
+
+        let cwd = vscode.workspace.rootPath;
+
+        if (useTerminal) {
+            runCommandInTerminal(args, cwd);
+        } else {
+            runCommandInOutputWindow(args, cwd);
+        }
+    }
+    function runCommandInTerminal(args: string[], cwd: string): void {
+        runInTerminal('ng', args, { cwd: cwd, env: process.env });
+    }
 
 }
 
