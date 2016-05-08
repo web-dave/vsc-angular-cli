@@ -16,13 +16,13 @@ In Visual Studio Code, run  ext install vsc-angular-cli  - or, simply hit  CMD/C
 * ng completion
 * ng e2e
 * ng format
-
-### comming (very) soon.
 * ng generate
+* ng test
+
+### comming (very?) soon.
 * ng get
 * ng set
 * ng github-pages:deploy
-* ng test
 
 **Enjoy!**
 
