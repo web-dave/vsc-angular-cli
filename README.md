@@ -1,4 +1,5 @@
 # vsc-angular-cli
+[![Build Status](https://travis-ci.org/web-dave/vsc-angular-cli.svg?branch=master)](https://travis-ci.org/web-dave/vsc-angular-cli)
 ## a wrapper for angular-cli commands
 So you can run angular-cli commands directly from cscode commandpannel.
 
