@@ -6,11 +6,29 @@
 So you can run angular-cli commands directly from cscode commandpannel.
 
 ## Install
+### you need to have angular-cli installed!
+In Visual Studio Code
+1. run  ext install vsc-angular-cli  - or, simply hit  CMD/CTRL + Shift + P
+2. search for "Install Extension"
+3. search for "angular-cli".
 
-In Visual Studio Code, run  ext install vsc-angular-cli  - or, simply hit  CMD/CTRL + Shift + P , search for "Install Extension", and then search for "angular-cli".
+## run
+* simply hit  CMD/CTRL + Shift + P
+* type a Supportedcommand 
 
 ### Supported commands (by now):
-![vsc-angular-cli features](images/ngCmd.png)
+* ng new
+* ng init
+* ng doc
+* ng lint
+* ng serve
+* ng versio
+* ng format
+* ng e2e
+* ng completion
+* ng generate
+* ng test
+* ng help
 
 
 ### backlog.
