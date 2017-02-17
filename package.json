@@ -15,6 +15,7 @@
         "onCommand:extension.ngDoc",
         "onCommand:extension.ngLint",
         "onCommand:extension.ngServe",
+        "onCommand:extension.ngBuild",
         "onCommand:extension.ngVersion",
         "onCommand:extension.ngFormat",
         "onCommand:extension.ngE2e",
@@ -49,6 +50,10 @@
             {
                 "command": "extension.ngServe",
                 "title": "ng serve"
+            },
+            {
+                "command": "extension.ngBuild",
+                "title": "ng build"
             },
             {
                 "command": "extension.ngVersion",

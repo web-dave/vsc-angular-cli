@@ -6,6 +6,7 @@ import { runNgCommand } from './ng/run';
 import { ngnew } from './ng/new';
 import { ngversion } from './ng/version';
 import { ngserve } from './ng/serve';
+import { ngbuild } from './ng/build';
 import { ngdoc } from './ng/doc';
 import { nglint } from './ng/lint';
 import { ngcompletion } from './ng/completion';
@@ -33,6 +34,7 @@ function registerCommands(context: vscode.ExtensionContext) {
     context.subscriptions.push(ngnew);
     context.subscriptions.push(ngversion);
     context.subscriptions.push(ngserve);
+    context.subscriptions.push(ngbuild);
     context.subscriptions.push(ngdoc);
     context.subscriptions.push(nglint);
     context.subscriptions.push(ngformat);
