@@ -22,7 +22,8 @@
         "onCommand:extension.ngCompletion",
         "onCommand:extension.ngTest",
         "onCommand:extension.ngGenerate",
-        "onCommand:extension.ngHelp"
+        "onCommand:extension.ngHelp",
+        "onCommand:extension.ngEject"
     ],
     "bugs": {
         "url": "https://github.com/web-dave/vsc-angular-cli/issues"
@@ -82,6 +83,10 @@
             {
                 "command": "extension.ngHelp",
                 "title": "ng help"
+            },
+            {
+                "command": "extension.ngEject",
+                "title": "ng eject"
             }
         ]
     },

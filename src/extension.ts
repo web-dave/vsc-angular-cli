@@ -15,7 +15,7 @@ import { ngformat } from './ng/format';
 import { ngtest } from './ng/test';
 import { nggenerate } from './ng/generate';
 import { nghelp } from './ng/help';
-
+import { ngeject } from './ng/eject';
 // import { ngset } from './ng/set';
 // import { ngdeploy } from './ng/deploy';
 // import { ngget } from './ng/get';
@@ -43,6 +43,7 @@ function registerCommands(context: vscode.ExtensionContext) {
     context.subscriptions.push(nggenerate);
     context.subscriptions.push(ngtest);
     context.subscriptions.push(nghelp);
+    context.subscriptions.push(ngeject);
 
     // context.subscriptions.push(ngset);
     // context.subscriptions.push(ngget);
