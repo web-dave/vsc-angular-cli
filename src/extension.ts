@@ -4,7 +4,6 @@ import * as vscode from 'vscode';
 
 import { runNgCommand } from './ng/run';
 import { ngnew } from './ng/new';
-import { nginit } from './ng/init';
 import { ngversion } from './ng/version';
 import { ngserve } from './ng/serve';
 import { ngdoc } from './ng/doc';
@@ -32,7 +31,6 @@ export function activate(context: vscode.ExtensionContext) {
 function registerCommands(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(ngnew);
-    context.subscriptions.push(nginit);
     context.subscriptions.push(ngversion);
     context.subscriptions.push(ngserve);
     context.subscriptions.push(ngdoc);
