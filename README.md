@@ -18,7 +18,6 @@ In Visual Studio Code
 
 ### Supported commands (by now):
 * ng new
-* ng init
 * ng doc
 * ng lint
 * ng serve

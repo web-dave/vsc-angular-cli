@@ -12,7 +12,6 @@
     ],
     "activationEvents": [
         "onCommand:extension.ngNew",
-        "onCommand:extension.ngInit",
         "onCommand:extension.ngDoc",
         "onCommand:extension.ngLint",
         "onCommand:extension.ngServe",
@@ -38,10 +37,6 @@
             {
                 "command": "extension.ngNew",
                 "title": "ng new"
-            },
-            {
-                "command": "extension.ngInit",
-                "title": "ng init"
             },
             {
                 "command": "extension.ngDoc",
