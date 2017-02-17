@@ -3,7 +3,7 @@
 
 
 ## a wrapper for angular-cli commands
-So you can run angular-cli commands directly from cscode commandpannel.
+So you can run angular-cli commands directly from the VSCode command panel.
 
 ## Install
 ### you need to have angular-cli installed!
